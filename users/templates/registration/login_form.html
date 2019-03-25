@@ -1,0 +1,35 @@
+<!-- login form template -->
+
+{% extends 'base.html' %}
+
+{% block subtitle %}
+    <h2>Log In</h2>
+{% endblock %}
+
+{% block sections %}
+    <section>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="field error">
+                {% for error in form.non_field_errors %}
+                    <span>{{ error|escape }}</span>
+                {% endfor %}
+            </div>
+
+            {% for field in form %}
+                <div class="field">
+                    {% include 'base/field.html' %}
+                </div>
+            {% endfor %}
+
+            <div class="field">
+                <button type="submit">Log In</button>
+            </div>
+
+            <div class="field">
+                <a href="{% url 'password-reset' %}">Forgot your password?</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

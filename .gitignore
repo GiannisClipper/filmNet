@@ -1,0 +1,13 @@
+#git ignores following folders and files
+
+venv/
+logs/
+
+migrations/
+**/__pycache__
+
+/db.sqlite3
+/media
+
+env.bat
+env.env

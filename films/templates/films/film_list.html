@@ -1,0 +1,24 @@
+<!-- list of films template -->
+
+{% extends "base.html" %}
+
+{% block subtitle %}
+    <h2>{{ subtitle }}</h2>
+{% endblock %}
+
+{% block sections %}
+    {% for film in records %}
+        <section class="film-record">
+            {% include 'films/film_record.html' %}
+            <div class="comments"><a href="{{ film.get_comments_url }}">Comments ({{ film.get_comments_count }})</a></div>
+        </section>
+    {% endfor %}
+{% endblock %}
+
+{% block page_prev %}
+    {% include 'base/page_prev.html' %}
+{% endblock %}
+
+{% block page_next %}
+    {% include 'base/page_next.html' %}
+{% endblock %}

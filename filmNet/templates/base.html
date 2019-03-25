@@ -1,0 +1,62 @@
+<!-- project's generic template -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+       <link href="data:image/x-icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAXFxcAP/eswD61qcAc3FvAP/hugBpaWkA/9ytAJaVkwDwxpAA9c2aAPrSnQCMiocAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMAQUFAgMLCgoJAQAEAAAEAAEEBAwICAwEBAEMBAAABAwGCwoKCQkKCgoGAAQAAAQABgsLCgoJCQoKBgwEAAAMDAQCCwsKCgkJCgQADAAADAAEBQILCwoKCQkEDAwAAAwMBAUFAgsLCgoJBAAMAAAMAAQEBAwICAwEBAQMDAAADAwECwoKCQkKCgoEAAwAAAwABAsLCgoJCQoKBAwMAAAMDAQCCwsKCgkJCgQADAAADAAEBQcLCwoKCQkEDAwAAAQMBgUFAgMLCgoJBgAEAAAEAAYEBAwICAwEBAYMBAAABAwBCwoKCQkKCgoBAAQAAAQAAQsLCgoJCQoKAQwEAIAFAACgAQAAgAUAAKABAACABQAAoAEAAIAFAACgAQAAgAUAAKABAACABQAAoAEAAIAFAACgAQAAgAUAAKABAAA=" rel="icon" type="image/x-icon" />
+        <meta charset="utf-8">
+        {% load static %}        
+        {% block static %}
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% endblock %}
+
+        <title>{% block title %}FilmNet{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+            {% if not user.is_authenticated %}
+            <a class="all-films" href="{% url 'all-films' %}">AllFilms</a>
+            <a class="all-comments" href="{% url 'all-comments' %}">AllComments</a><div class='break-small'></div>
+            <a class="home" href="{% url 'home' %}"><h1>FilmNet</h1></a>
+            <a class="signup" href="{% url 'signup' %}">SignUp</a>
+            <a class="login" href="{% url 'login' %}">LogIn</a>
+
+            {% else %}
+            <a class="new-film" href="{% url 'film-create' %}">NewFilm</a>
+            <a class="all-films" href="{% url 'all-films' %}">AllFilms</a>
+            <a class="all-comments" href="{% url 'all-comments' %}">AllComments</a>
+            <a class="my-films" href="{% url 'my-films' %}">MyFilms</a><div class='break-small'></div>
+            <a class="my-comments" href="{% url 'my-comments' %}">MyComments</a><div class='break-medium'></div>
+            <a class="home" href="{% url 'home' %}"><h1>{{user.username}}@FilmNet</h1></a><div class='break-small'></div>
+            <a class="users-list" href="{% url 'users-list' %}">Users</a>
+            <a class="password-change" href="{% url 'password-change' %}">ChangePassword</a>
+            <a class="logout" href="{% url 'logout' %}">LogOut</a>
+            {% endif %}
+            </nav>
+        </header>
+
+        <main>
+            <div class="container">
+            {% block subtitle %}
+            {% endblock %}
+            {% block sections %}
+            {% endblock %}
+            </div>
+        </main>
+
+        <footer>
+            <div class="page-prev">
+                {% block page_prev %}
+                {% endblock %}        
+            </div>
+            <div class="copyright">
+                <a href="https://github.com/giannisclipper">Athens 2019, Giannis Clipper</a>
+            </div>
+            <div class="page-next">
+                {% block page_next %}
+                {% endblock %}            
+            </div>    
+        </footer>
+    </body>
+</html>

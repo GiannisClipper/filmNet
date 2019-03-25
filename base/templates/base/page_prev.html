@@ -1,0 +1,11 @@
+<!-- paginator, prev page url -->
+
+{% if records.has_other_pages %}
+
+    {% if records.has_previous %}
+        <a href="?page={{ records.previous_page_number }}">Page {{ records.previous_page_number }}</a>
+    {% else %}
+        No page
+    {% endif %}
+
+{% endif %}

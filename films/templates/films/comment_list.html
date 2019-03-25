@@ -1,0 +1,26 @@
+<!-- comment list template -->
+
+{% extends "base.html" %}
+
+{% block subtitle %}
+    <h2>{{ subtitle }}</h2>
+{% endblock %}
+
+{% block sections %}
+    {% for comment in records %}
+        <section class="comment-record">
+            <div class="film">
+                on film: <a href="{{ comment.film.get_comments_url }}">{{ comment.film }}</a>
+            </div>
+            {% include 'films/comment_record.html' %}
+        </section>
+    {% endfor %}
+{% endblock %}
+
+{% block page_prev %}
+    {% include 'base/page_prev.html' %}
+{% endblock %}
+
+{% block page_next %}
+    {% include 'base/page_next.html' %}
+{% endblock %}

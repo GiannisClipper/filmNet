@@ -1,0 +1,20 @@
+<!-- film delete form part -->
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="field">
+            {% include 'base/field.html' %}
+        </div>
+    {% endfor %}
+
+    <div class="field question">
+        Are you sure you want to delete this film <br>(including any existing comments on it) ?
+    </div>
+
+    <div class="field">
+        <button type="submit" name="submit_ok">Yes, delete</button><!--
+        --><button type="submit" name="submit_cancel">No, cancel</button>
+    </div>
+</form>

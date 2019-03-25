@@ -1,0 +1,22 @@
+<!-- film form part -->
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+        {% if field.name == "upload_image" %}
+            <div class="field upload">
+                {% include 'base/field_upload.html' %}
+            </div>
+        {% else %}
+            <div class="field">
+                {% include 'base/field.html' %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="field">
+        <button type="submit" name="submit_ok">Save</button><!--
+        --><button type="submit" name="submit_cancel">Cancel</button>
+    </div>
+</form>

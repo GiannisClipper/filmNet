@@ -1,0 +1,9 @@
+<!-- comment stamp part -->
+
+<div class="field stamp"> 
+    {% if comment.user == user %}
+        {% include 'films/comment_tools.html' %}
+    {% endif %}
+
+    posted by <span class="user">{{ comment.user }}</span> ({{ comment.get_created_or_updated }} {{ comment.get_updated_at_formatted }} UTC)
+</div>

@@ -1,0 +1,13 @@
+<!-- form file fields generic display-->
+
+{% if not field.is_hidden %}
+    {{ field.label_tag }}
+    <img src="{{ img_url }}">
+{% endif %}
+
+{{ field }}
+
+{% for error in field.errors %}
+    <span class="error">{{ error }}</span>
+{% endfor %}
+

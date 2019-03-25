@@ -1,0 +1,13 @@
+<!-- form fields generic display-->
+
+{% if not field.is_hidden %}
+    {{ field.label_tag }}
+{% endif %}
+
+{{ field }}
+
+{% for error in field.errors %}
+    <span class="error">{{ error }}</span>
+{% endfor %}
+
+  

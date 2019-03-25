@@ -1,0 +1,34 @@
+<!-- user_form_delete.html -->
+
+{% extends "base.html" %}
+
+{% block subtitle %}
+    <h2>Delete User</h2>
+{% endblock %}
+
+{% block sections %}
+    <section class="record">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="field">
+                    {% include 'base/field.html' %}
+                </div>
+            {% endfor %}
+
+            {% with user=user_to_delete %}
+                {% include 'users/user_record.html' %}
+            {% endwith %}
+
+            <div class="field question">
+                Are you sure you want to delete this user ?
+            </div>
+
+            <div class="field">
+                <button type="submit" name="submit_ok">Yes, delete</button><!--
+                --><button type="submit" name="submit_cancel">No, cancel</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

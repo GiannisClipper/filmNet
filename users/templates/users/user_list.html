@@ -1,0 +1,26 @@
+<!-- list of users template -->
+
+{% extends "base.html" %}
+
+{% block subtitle %}
+    <h2>Users</h2>
+{% endblock %}
+
+{% block sections %}
+    {% for user in records %}
+        <section class="record">
+            {% include 'users/user_record.html' %}
+            {% if is_admin %}
+                [{% include 'users/user_tools.html' %}]
+            {% endif %}
+        </section>
+    {% endfor %}
+{% endblock %}
+
+{% block page_prev %}
+    {% include 'base/page_prev.html' %}
+{% endblock %}
+
+{% block page_next %}
+    {% include 'base/page_next.html' %}
+{% endblock %}

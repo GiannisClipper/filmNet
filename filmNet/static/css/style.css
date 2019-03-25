@@ -1,0 +1,294 @@
+/* generic and basic settings */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input, button, textarea {
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  text-decoration: none;
+  padding: 1px;
+  border: 1px dashed transparent;
+}
+
+body {
+  /*position: relative;   footer's position = absolute (to be placed at bottom) */
+  /*min-height: 100vh;   fill all vieport */
+  --color-back: cadetblue;
+  --color-back-darker: rgb(80, 100, 120);
+  --color-front: blanchedalmond;
+  --color-question: orangered;  
+  --color-error: darkred;  
+
+  background-color: var(--color-back);
+  color: var(--color-front);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* header & footer settings */
+
+header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+
+  height: 6.5em;
+  background-color: var(--color-back);
+  box-shadow: 0px -1px 8px var(--color-back-darker);
+  text-align: center;
+}
+
+header nav {
+  padding-top: 1em;
+}
+
+header h1 {
+  display: inline;
+  vertical-align: -6%;
+  color: var(--color-back);
+  font-size: 1.6em;
+}
+
+header a,
+footer a {
+  padding: 8px;
+  color: var(--color-front);
+}
+
+header a:hover,
+footer a:hover {
+  border-color: var(--color-front);
+}
+
+footer {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+
+  height: 2.5em;
+  background-color: var(--color-back);
+  box-shadow: 0px -1px 8px var(--color-back-darker);
+  text-align: center;
+}
+
+footer .page_prev,
+footer .page_next {
+  width: 20%;
+}
+
+footer .copyright {
+  width: 60%;
+}
+
+footer div {
+  display: inline-block;
+  padding-top: 0.75em;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+/* main structure settings */
+
+main {
+  min-height: calc(100vh - 9em); /* viewport's height - header's + footer's */
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+/*to vertically center  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
+}
+
+.container * {
+  width: 100%;
+}
+
+.container input[type='file'],
+.container input[type='checkbox'] {
+  width: initial;
+}
+
+.container button {
+  width: 50%;
+}
+
+h1, h2 {
+  text-shadow: -1px 0 var(--color-back-darker), 0 1px var(--color-back-darker), 1px 0 var(--color-back-darker), 0 -1px var(--color-back-darker);
+}
+
+h2 {
+  padding-top: 0.5em;
+}
+
+section {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  background-color: var(--color-front);
+  font-size: 0.95em;
+  color: cadetblue;
+  border-bottom: 2px dotted var(--color-back);
+}
+
+section a {
+  color: var(--color-back);
+}
+
+section a:hover {
+  border-color: var(--color-back);
+}
+
+section.welcome p {
+  padding: .25em 1.5em;
+  color: var(--color-back-darker);
+  text-indent: 1em;
+}
+
+section.welcome span.emphasize {
+  font-weight: 700;
+}
+
+section .field {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+section.film-record .title {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+section.comment-record .stamp,
+section.film-record .stamp,
+section.film-record .comments {
+  font-size: 0.85em;
+  margin: 0.5em;
+  margin-bottom: 1em;
+}
+
+section.comment-record .user,
+section.comment-record .record-tools a,
+section.film-record .user,
+section.film-record .record-tools a,
+section.film-record .comments a {
+  color: var(--color-back-darker)
+}
+
+section.comment-record .comment,
+section.film-record .summary {
+  margin: 0.5em;
+}
+
+section .question {
+  text-align: center;
+  color: var(--color-question);
+}
+
+section .error {
+  font-size: 0.9em;
+  color: var(--color-error);
+}
+
+
+/* responsive design
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+  header nav .break-medium {
+    display: inline;
+  }
+  header nav .break-small {
+    display: block;
+  }
+  @media only screen and (max-width: 512px) {
+    header, footer {
+      font-size: 90%;
+    }
+  }
+}
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+  header nav .break-medium {
+    display: block;
+  }
+  header nav .break-small {
+    display: inline;
+  }
+
+  header {
+    height: 5.5em;
+  }
+
+  main {
+    min-height: calc(100vh - 8em); /* viewport's height - header's + footer's */
+  }
+
+  .container {
+    width: 600px;
+  }
+
+  footer {
+    width: 600px;
+    left: calc(50% - 300px);
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) 
+ @media only screen and (min-width: 768px) {
+  .container {
+    width: 512px;
+  }
+ } */
+ 
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+    header nav .break-medium {
+      display: inline;
+    }
+
+    header nav .break-small {
+      display: inline;
+    }
+
+    header {
+      height: 4.5em;
+    }
+  
+    main {
+      min-height: calc(100vh - 7em); /* viewport's height - header's + footer's */
+    }
+    
+    .container {
+      width: 600px;
+    }
+  
+    footer {
+      width: 600px;
+      left: calc(50% - 300px);
+  }
+}
+ 
+ /* Extra large devices (large laptops and desktops, 1200px and up) 
+ @media only screen and (min-width: 1200px) {
+
+ } */

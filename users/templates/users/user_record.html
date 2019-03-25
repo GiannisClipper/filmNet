@@ -1,0 +1,15 @@
+<!-- user record part  -->
+
+{{user.username}}
+
+{% if is_admin %}
+
+    {{user.id}}
+
+    {{user.email}}
+
+    {% if user.is_active %}
+        active
+    {% endif %}
+
+{% endif %}

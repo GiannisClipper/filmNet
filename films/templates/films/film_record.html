@@ -1,0 +1,9 @@
+<!-- film record part -->
+
+<div class="title"><a href="{{ film.get_comments_url }}">{{ film.title }} ({{ film.year }})</a></div>
+
+{% include 'films/film_stamp.html' %}
+
+<div class="image"><img src = "{{ film.get_image_url }}" /></div>
+
+<div class="summary">{{ film.summary|linebreaks }}</div>

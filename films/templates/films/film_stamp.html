@@ -1,0 +1,10 @@
+<!-- film stamp part -->
+
+<div class="field stamp">
+    {% if film.user == user %}
+        {% include 'films/film_tools.html' %}
+    {% endif %}
+
+    posted by <span class="user">{{ film.user }}</span> ({{ film.get_created_or_updated }} {{ film.get_updated_at_formatted }} UTC)
+</div>
+    
