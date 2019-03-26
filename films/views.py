@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 
 from base.views import BaseView, CreateViewWithStamp, UpdateViewWithStamp, DeleteView, FileImageHandler
 from base.views import BaseListWithPaginator
@@ -205,7 +206,7 @@ class CommentView(BaseView):
         return HttpResponseRedirect(reverse('film-comments', args=[str(cls.film.id)]))
 
 
-class FilmComments(CommentView, CreateViewWithStamp): #satisfy the need of a CommentCreate
+class FilmComments(CommentView, CreateViewWithStamp):
     '''class to display the comments of a film comments and also handle comment-create requests'''
 
     Form = CommentForm
@@ -216,6 +217,12 @@ class FilmComments(CommentView, CreateViewWithStamp): #satisfy the need of a Com
         super().not_post()
         cls.film = get_object_or_404(Film, pk=cls.id)
         cls.form.fields['film_id'].initial=cls.film.id
+
+    @classmethod
+    def after_post(cls):
+        super().after_post()
+        cls.film.updated_at = timezone.now()
+        cls.film.save()
 
 
 class CommentUpdate(CommentView, UpdateViewWithStamp):
@@ -229,6 +236,12 @@ class CommentUpdate(CommentView, UpdateViewWithStamp):
         super().not_post()
         cls.film = get_object_or_404(Film, pk=cls.model.film_id)
         cls.form.fields['film_id'].initial=cls.model.film_id
+
+    @classmethod
+    def after_post(cls):
+        super().after_post()
+        cls.film.updated_at = timezone.now()
+        cls.film.save()
 
 
 class CommentDelete(CommentView, DeleteView):

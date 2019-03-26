@@ -241,13 +241,14 @@ class BaseListWithPaginator(BaseList):
     '''class to handle list requests (extended with paginator)'''
 
     paginator = None
+    records_per_page = 10
 
     @classmethod
     def run(cls, req):
         cls.req = req
         page = cls.req.GET.get('page', 1)
         cls.query()
-        cls.paginator = Paginator(cls.records, 5)
+        cls.paginator = Paginator(cls.records, cls.records_per_page)
         try:
             cls.records = cls.paginator.page(page)
         except PageNotAnInteger:

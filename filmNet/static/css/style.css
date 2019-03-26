@@ -197,6 +197,7 @@ section.film-record .comments a {
 section.comment-record .comment,
 section.film-record .summary {
   margin: 0.5em;
+  padding-right: 0.5em;
 }
 
 section .question {
