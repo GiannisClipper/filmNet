@@ -1,6 +1,6 @@
 ## FilmNet
 
-This is a demo site, designed and written for practicing web development with pythons's Django. UI/UX written in plain HTML/CSS, data storage based on SQL database while images saved in file system as files and email sending powered by smtp.gmail.com.
+This is a demo site, designed and written for practicing web development with python's Django. UI/UX written in plain HTML/CSS, data storage based on SQL database while images saved in file system as files and email sending powered by smtp.gmail.com.
 
 It works like __a forum consisted of users, film posts and comments__ on films. Data are visible to all site visitors but only registered users can post new films and comments as well as modify or delete their own posts.
 

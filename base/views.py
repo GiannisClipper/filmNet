@@ -16,7 +16,7 @@ from PIL import Image
 ##############################################################################
 
 def admin_required(function):
-    '''decorator to check if logged in user is admin'''
+    '''decorator to allow function execution if logged in user is the admin'''
 
     @wraps(function)
     def decorator(req, *args, **kwargs):
@@ -67,7 +67,7 @@ class FileImageHandler(FileHandler):
     '''class to handle file upload (extended for images)'''
 
     @classmethod
-    def resize(cls, width=512, height=512):
+    def resize(cls, width=600, height=400):
         im = Image.open(cls.fullname())
         im.thumbnail((width, height))
         im.save(cls.fullname())
@@ -91,7 +91,6 @@ class BaseView:
         cls.model = cls.Model()
 
         if cls.req.method == 'POST':
-            print('\n\n\n', cls.req.POST, '\n\n\n')
             cls.form = cls.Form(cls.req.POST, cls.req.FILES)
             if 'submit_ok' in cls.req.POST: #on [save] / [ok] button clicks
                 if cls.form.is_valid():

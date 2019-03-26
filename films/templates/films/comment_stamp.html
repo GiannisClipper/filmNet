@@ -5,7 +5,7 @@
         Add new comment here
 
     {% else %}
-        {% if comment.user == user %}
+        {% if comment.user == user or user.is_the_admin %}
             {% include 'films/comment_tools.html' %}
         {% endif %}
 

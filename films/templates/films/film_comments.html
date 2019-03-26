@@ -24,7 +24,19 @@
             {% include 'films/film_stamp.html' %}
             {% include 'films/film_form.html' %}
         </section>
+    {% elif HTMLmode == 'film-update' and user and user.is_the_admin %}
+        <section class="film-record">
+            {% include 'films/film_stamp.html' %}
+            {% include 'films/film_form.html' %}
+        </section>
     {% elif HTMLmode == 'film-delete' and user and user == film.user %}
+        <section class="film-record">
+            {% include 'films/film_form_delete.html' %}
+        </section>
+        <section class="film-record">
+            {% include 'films/film_record.html' %}
+        </section>
+    {% elif HTMLmode == 'film-delete' and user and user.is_the_admin %}
         <section class="film-record">
             {% include 'films/film_form_delete.html' %}
         </section>
@@ -39,10 +51,14 @@
 
     {% for comment in records %}
         <section class="comment-record" id="{{ comment.id }}">
-            {% if HTMLmode == 'comment-update' and user and user == comment.user and curr_comment_id == comment.id %} {# form.id.value == comment.id #}
+            {% if HTMLmode == 'comment-update' and curr_comment_id == comment.id and user and user == comment.user %}
                 {% include 'films/comment_form.html' %}
-            {% elif HTMLmode == 'comment-delete' and user and user == comment.user and curr_comment_id == comment.id %}
+            {% elif HTMLmode == 'comment-update' and curr_comment_id == comment.id and user and user.is_the_admin %}
+                {% include 'films/comment_form.html' %}
+            {% elif HTMLmode == 'comment-delete' and curr_comment_id == comment.id and user and user == comment.user %}
                 {% include 'films/comment_form_delete.html' %}
+            {% elif HTMLmode == 'comment-delete' and curr_comment_id == comment.id and user and user.is_the_admin %}
+                {% include 'films/comment_form.html' %}
             {% else %}
                 {% include 'films/comment_record.html' %}
             {% endif %}

@@ -98,9 +98,8 @@ class FilmView(BaseView):
     @classmethod
     def render(cls):
         #update & delete allowed only by user created the post
-        if not cls.model.user or cls.model.user==cls.req.user:
-            #img_url = cls.model.get_image_url()
-            #return render(cls.req, 'films/film_form.html', {'form':cls.form, 'img_url':img_url})
+        cls.req.user.is_the_admin = True if cls.req.user.username==os.environ.get('ADMIN_USERNAME', None) else False
+        if not cls.model.user or cls.model.user==cls.req.user or cls.req.user.is_the_admin:
             return render(cls.req, 'films/film_comments.html', {'form':cls.form, 'HTMLmode':cls.HTMLmode, 'film':cls.film, 'records':None if not cls.film else cls.film.get_comments(), 'curr_comment_id':None})
         else:
             return cls.redirect()
@@ -167,6 +166,7 @@ class AllFilms(BaseListWithPaginator):
 
     @classmethod
     def render(cls):
+        cls.req.user.is_the_admin = True if cls.req.user.username==os.environ.get('ADMIN_USERNAME', None) else False
         return render(cls.req, 'films/film_list.html', {'subtitle':'All Films', 'records':cls.records, 'user':cls.req.user})
 
 
@@ -199,6 +199,7 @@ class CommentView(BaseView):
 
     @classmethod
     def render(cls):
+        cls.req.user.is_the_admin = True if cls.req.user.username==os.environ.get('ADMIN_USERNAME', None) else False
         return render(cls.req, 'films/film_comments.html', {'form':cls.form, 'HTMLmode': cls.HTMLmode, 'film':cls.film, 'records':cls.film.get_comments(), 'curr_comment_id': cls.id})
 
     @classmethod
@@ -268,6 +269,7 @@ class AllComments(BaseListWithPaginator):
 
     @classmethod
     def render(cls):
+        cls.req.user.is_the_admin = True if cls.req.user.username==os.environ.get('ADMIN_USERNAME', None) else False
         return render(cls.req, 'films/comment_list.html', {'subtitle':'All Comments', 'records':cls.records, 'user':cls.req.user})
 
 

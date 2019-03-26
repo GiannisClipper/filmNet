@@ -1,7 +1,7 @@
 <!-- film stamp part -->
 
 <div class="field stamp">
-    {% if film.user == user %}
+    {% if film.user == user or user.is_the_admin %}
         {% include 'films/film_tools.html' %}
     {% endif %}
 
